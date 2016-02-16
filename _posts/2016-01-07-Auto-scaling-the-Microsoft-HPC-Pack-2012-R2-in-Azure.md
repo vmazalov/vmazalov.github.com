@@ -33,5 +33,30 @@ cd D:\scratch\HPCScalingLogs
 AzureAutoGrowShrink.ps1 -NodeTemplates @('AMTempNodes') -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 16 -NumOfActiveQueuedTasksToGrowThreshold 1 -NumOfInitialNodesToGrow 1 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 3 -ShrinkCheckIdleTimes 3
 ```
 
-Further, it's desirable to schedule the script to run upon start of the headnode. This can be done in the Task Scheduler GUI.
+Further, it's desirable to schedule the script to run upon start of the headnode. This can be done in the Task Scheduler GUI. Also, note that frequent restart of Azure VMs may lead to accumulation of ghost NICs, as described in detail in [this post](https://systemcenterpoint.wordpress.com/2014/10/16/hidden-network-adapters-in-azure-vm-and-unable-to-access-network-resources/comment-page-1/). The following powershell script will delete ghost NICs
+
+        Set-Location C:\_Source\Release
+        Import-Module C:\_Source\Release\DeviceManagement.psd1 -Verbose
+        # List Hidden Devices
+        Get-Device -ControlOptions DIGCF_ALLCLASSES | Sort-Object -Property Name | Where-Object {($_.IsPresent -eq $false) -and ($_.Name -like “Microsoft Hyper-V Network Adapter*”) } | ft Name, DriverVersion, DriverProvider, IsPresent, HasProblem, InstanceId -AutoSize
+        # Get Hidden Hyper-V Net Devices
+        $hiddenHypVNics = Get-Device -ControlOptions DIGCF_ALLCLASSES | Sort-Object -Property Name | Where-Object {($_.IsPresent -eq $false) -and ($_.Name -like “Microsoft Hyper-V Network Adapter*”) }
+        # Loop and remove with DevCon.exe
+        ForEach ($hiddenNic In $hiddenHypVNics) {
+        $deviceid = “@” + $hiddenNic.InstanceId
+        .\devcon.exe -r remove $deviceid
+        } 
+
+Ensure that the Release folder contains the following dependencies
+
+        DeviceManagementEngine.dll
+        DeviceManagementCmdlet.dll
+        DeviceManagement.psd1
+        devcon.exe
+        
+Finally, it's recommended to schedule a the powershell script to run on system startup to delete the ghost NICs periodically
+
+        Schtasks /create /sc ONSTART /tn Remove_ghost_NICs /tr C:\_Source\run.bat /F /S amhpcnd33
+        
+
 
