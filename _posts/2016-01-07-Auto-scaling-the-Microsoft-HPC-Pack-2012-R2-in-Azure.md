@@ -30,7 +30,7 @@ Having completed these steps, one should be able to run the AzureAutoGrowShrink 
 cd D:\scratch\HPCScalingLogs
 ```
 ```
-AzureAutoGrowShrink.ps1 -NodeTemplates @('AMTempNodes') -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 16 -NumOfActiveQueuedTasksToGrowThreshold 1 -NumOfInitialNodesToGrow 1 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 3 -ShrinkCheckIdleTimes 3
+AzureAutoGrowShrink.ps1 -NodeTemplates @('AMTempNodes') -NodeType ComputeNodes -NumOfActiveQueuedTasksPerNodeToGrow 16 -NumOfActiveQueuedTasksToGrowThreshold 1 -NumOfInitialNodesToGrow 1 -GrowCheckIntervalMins 1 -ShrinkCheckIntervalMins 2 -ShrinkCheckIdleTimes 3
 ```
 
 Further, it's desirable to schedule the script to run upon start of the headnode. This can be done in the Task Scheduler GUI. Also, note that frequent restart of Azure VMs may lead to accumulation of ghost NICs, as described in detail in [this post](https://systemcenterpoint.wordpress.com/2014/10/16/hidden-network-adapters-in-azure-vm-and-unable-to-access-network-resources/comment-page-1/). The following powershell script will delete ghost NICs
