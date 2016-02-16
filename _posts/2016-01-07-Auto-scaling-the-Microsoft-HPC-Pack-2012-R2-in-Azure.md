@@ -56,7 +56,9 @@ Ensure that the Release folder contains the following dependencies
         
 Finally, it's recommended to schedule the powershell script to run on system startup to delete the ghost NICs periodically
 
-        Schtasks /create /sc ONSTART /tn Remove_ghost_NICs /tr "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe C:\_Source\run.ps1  > D:/remove_ghost_NICs.log" /F /u username /ru System /RL HIGHEST /S nodename
+        Schtasks /create /sc ONSTART /tn Remove_ghost_NICs /tr "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe C:\_Source\run.ps1 > D:/remove_ghost_NICs.log" /F /u username /p ... /ru System /RL HIGHEST /S nodename
         
 
+To run the command on demand, use
 
+        Schtasks /run /tn Remove_ghost_NICs /u username /p ...  /S nodename
