@@ -54,9 +54,9 @@ Ensure that the Release folder contains the following dependencies
         DeviceManagement.psd1
         devcon.exe
         
-Finally, it's recommended to schedule a the powershell script to run on system startup to delete the ghost NICs periodically
+Finally, it's recommended to schedule the powershell script to run on system startup to delete the ghost NICs periodically
 
-        Schtasks /create /sc ONSTART /tn Remove_ghost_NICs /tr C:\_Source\run.bat /F /S amhpcnd33
+        Schtasks /create /sc ONSTART /tn Remove_ghost_NICs /tr C:\_Source\run.bat /F /S amhpcnd33 /u username /ru System
         
 
 
