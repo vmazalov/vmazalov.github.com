@@ -11,3 +11,11 @@ Some usefull Windows powershell commands
 * Select unique single letter words from a text file.
 
         cat textFile.txt |% { $_ -split '\s' } |? { $_ -match '^.$' } | select -Unique
+
+* Select strings that contain a single characters surrounded by space and folloed by a number, e.g. " a -0.23243"
+
+         sls '\s\w($|\s+-?[0-9.]+)' textFile.txt 
+        
+
+         
+         
