@@ -8,6 +8,11 @@ tags : [Git, Commands]
 
 I will be recording  here some of the commonly used Git commands:
 
+* Init repo and clone (note that for windows locations, one should use file:////hostname/path/to/repo)
+
+        Git init
+	Git clone remote_repo_location
+
 * Add all modified files
 
         git add -A
