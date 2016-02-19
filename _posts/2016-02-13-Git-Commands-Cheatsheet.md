@@ -13,6 +13,10 @@ I will be recording  here some of the commonly used Git commands:
         Git init
 	Git clone remote_repo_location
 
+* Show refs
+
+	git show-ref
+	
 * Add all modified files
 
         git add -A
