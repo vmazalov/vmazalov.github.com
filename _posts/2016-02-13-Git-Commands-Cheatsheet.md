@@ -33,7 +33,11 @@ I will be recording  here some of the commonly used Git commands:
 * Manager tracked repositories
 
         git remote
-        
+   
+* Checkout a branch from a remote
+
+	git checkout -b < new_branch > origin/< new_branch >
+	
 * Some other common commands
 
         Git status
@@ -41,3 +45,4 @@ I will be recording  here some of the commonly used Git commands:
         Git cherry-pick <commit_id>
         git pull
         git rebase origin/master
+  
