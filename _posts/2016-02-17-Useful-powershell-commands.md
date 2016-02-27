@@ -20,6 +20,10 @@ Some usefull Windows powershell commands
 
         cat list | grep -E \w*[A-Z]+\w*
         
+* Find all strings in FileA which are not present in FileB
+
+        grep -F -x -v -f fileB fileA
+        
 
          
          
