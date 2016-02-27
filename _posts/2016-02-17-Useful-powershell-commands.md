@@ -14,7 +14,11 @@ Some usefull Windows powershell commands
 
 * Select strings that contain a single characters surrounded by space and folloed by a number, e.g. " a -0.23243"
 
-         sls '\s\w($|\s+-?[0-9.]+)' textFile.txt 
+         sls '\s\w($|\s+-?[0-9.]+)' textFile.txt
+         
+* Find strings that contain capital letters
+
+        cat list | grep -E \w*[A-Z]+\w*
         
 
          
