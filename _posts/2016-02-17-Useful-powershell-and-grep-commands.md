@@ -24,6 +24,8 @@ Some usefull Windows powershell and grep commands
 
         grep -F -x -v -f fileB fileA
         
+* Count lines in a file
 
+        cat list | find /v /c ""
          
          
