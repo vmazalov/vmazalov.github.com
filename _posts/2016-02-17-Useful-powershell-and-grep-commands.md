@@ -6,7 +6,7 @@ tags : [Powershell, Commands]
 ---
 {% include JB/setup %}
 
-Some usefull Windows powershell commands
+Some usefull Windows powershell and grep commands
 
 * Select unique single letter words from a text file.
 
