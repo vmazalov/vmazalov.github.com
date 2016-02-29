@@ -26,4 +26,4 @@ This describes a quick way of installing Theano on a Windows machine, based on t
 
 1. Create $HOME$ system variable and place ```.theanorc.txt``` Theano config file inside the folder that $HOME$ points to. 
 
-Test mathjax: $x^2$
+Test mathjax: $x^2 + 2b$
