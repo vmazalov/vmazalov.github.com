@@ -24,6 +24,16 @@ This step is especially important if you plan to keep permanent nodes in the clu
 
 1. At the time of writing, the [AzureAutoGrowShrink](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-hpcpack-cluster-node-autogrowshrink/) script can only work with Azure PowerShell version 0.8.12. To check your version, run `(Get-Module -ListAvailable -Name Azure).Version`. If your version is higher, you would need to uninstall Azure PowerShell and install the proper version, that can be downloaded from [here](http://az412849.vo.msecnd.net/downloads03/azure-powershell.0.8.12.msi).
 
+1. Change the log directory of temp files in `HPCIaaSNodeMgmtUtil.ps1` to point to desired location (by default it logs on the system drive)
+        $script:LogFile = "D:\scratch\HPCScalingLogs\temp\HpcNodeLog-$datetimestr.txt"
+
+1. Consider updating `AzureRdfeUtil.ps1` to enable starting VMs one at a time, rather than all VMs in a service group:
+
+        		foreach ($vmToStart in $servicesForBatchOp[$serviceName].VM) {
+			$opId = StartAzureVM $httpClient $subscriptionId $serviceName $servicesForBatchOp[$serviceName].DeploymentName $vmToStart
+			$operations[$vmToStart] = @{"ID"=$opId; "State"="InProgress"}
+		}
+		
 Having completed these steps, one should be able to run the AzureAutoGrowShrink script without any issues, e.g.
 
 ```
