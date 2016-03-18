@@ -18,3 +18,6 @@ This written primarily for Windows, but the same should apply to other platforms
 
         git config --add lfs.url \\\\hostname\\fileshare\\path
 
+* Make LFS track all dll files recursively  
+        
+        git lfs track "private/**/*.dll"
