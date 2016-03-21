@@ -28,4 +28,6 @@ Some usefull Windows powershell and grep commands
 
         cat list | find /v /c ""
          
-         
+* Display the first 100 lines in a text file:
+
+         powershell -command "& {Get-Content lm.arpa -TotalCount 100}"
