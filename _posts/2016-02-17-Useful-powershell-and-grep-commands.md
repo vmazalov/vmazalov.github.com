@@ -31,3 +31,25 @@ Some usefull Windows powershell and grep commands
 * Display the first 100 lines in a text file:
 
          powershell -command "& {Get-Content lm.arpa -TotalCount 100}"
+
+* Split large text file into smaller files (make sure that the "split" directory exists)
+
+```
+$reader = new-object System.IO.StreamReader("C:\full_path_to_large_file.txt")
+$count = 1
+$upperBound = 1000000
+$ext="txt"
+$rootName = "C:\split\"
+$fileName = "{0}{1}.{2}" -f ($rootName, $count, $ext)
+while(($line = $reader.ReadLine()) -ne $null)
+{
+    Add-Content -path $fileName -value $line
+    if((Get-ChildItem -path $fileName).Length -ge $upperBound)
+    {
+        ++$count
+        $fileName = "{0}{1}.{2}" -f ($rootName, $count, $ext)
+    }
+}
+
+$reader.Close()
+```
