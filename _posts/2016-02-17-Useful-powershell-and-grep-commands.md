@@ -53,3 +53,6 @@ while(($line = $reader.ReadLine()) -ne $null)
 
 $reader.Close()
 ```
+* Dispay N line before|after matching line
+
+         grep -(B|A)N <expr> files
