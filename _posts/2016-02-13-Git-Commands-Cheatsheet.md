@@ -15,7 +15,7 @@ I will be recording  here some of the commonly used Git commands:
 
 * Show refs
 
-	git show-ref
+        git show-ref
 	
 * Add all modified files
 
@@ -36,7 +36,7 @@ I will be recording  here some of the commonly used Git commands:
    
 * Checkout a branch from a remote
 
-	git checkout -b < new_branch > origin/< new_branch >
+        git checkout -b < new_branch > origin/< new_branch >
 	
 * Some other common commands
 
@@ -45,4 +45,5 @@ I will be recording  here some of the commonly used Git commands:
         Git cherry-pick <commit_id>
         git pull
         git rebase origin/master
+        git push origin HEAD:branch_Name
   
