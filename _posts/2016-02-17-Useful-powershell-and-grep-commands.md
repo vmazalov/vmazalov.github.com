@@ -57,3 +57,7 @@ $reader.Close()
 * Dispay N line before|after matching line
 
          grep -(B|A)N <expr> files
+
+* Conditional breakpoint in VC++
+         strcmp(newString._Bx._Ptr,"my value")==0 
+         wcscmp(newString._Bx._Ptr, L"my value")==0 
